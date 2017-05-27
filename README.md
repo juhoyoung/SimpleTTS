@@ -1,2 +1,6 @@
-# SimpleTTS
-# SimpleTTS
+# First Commit
+
+
+메모리 문제 해결해야함
+
+후킹이 문제인지 뭐가 문제인지 아무튼 안되는곳이 있음
