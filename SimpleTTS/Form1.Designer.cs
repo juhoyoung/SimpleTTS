@@ -28,7 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.OpenMacro_Btn = new System.Windows.Forms.Button();
+            this.NotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.ctxt_Menu1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.Macro_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exit_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Hide_Btn = new System.Windows.Forms.Button();
+            this.ctxt_Menu1.SuspendLayout();
             this.SuspendLayout();
             // 
             // OpenMacro_Btn
@@ -41,24 +49,72 @@
             this.OpenMacro_Btn.UseVisualStyleBackColor = true;
             this.OpenMacro_Btn.Click += new System.EventHandler(this.OpenMacro_Btn_Click);
             // 
+            // NotifyIcon
+            // 
+            this.NotifyIcon.ContextMenuStrip = this.ctxt_Menu1;
+            this.NotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("NotifyIcon.Icon")));
+            this.NotifyIcon.Text = "말하세요";
+            this.NotifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon_MouseDoubleClick);
+            // 
+            // ctxt_Menu1
+            // 
+            this.ctxt_Menu1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Macro_MenuItem,
+            this.exit_MenuItem});
+            this.ctxt_Menu1.Name = "ctxt_Menu1";
+            this.ctxt_Menu1.Size = new System.Drawing.Size(139, 48);
+            // 
+            // Macro_MenuItem
+            // 
+            this.Macro_MenuItem.Name = "Macro_MenuItem";
+            this.Macro_MenuItem.Size = new System.Drawing.Size(138, 22);
+            this.Macro_MenuItem.Text = "매크로 설정";
+            this.Macro_MenuItem.Click += new System.EventHandler(this.OpenMacro_Btn_Click);
+            // 
+            // exit_MenuItem
+            // 
+            this.exit_MenuItem.Name = "exit_MenuItem";
+            this.exit_MenuItem.Size = new System.Drawing.Size(138, 22);
+            this.exit_MenuItem.Text = "종료";
+            this.exit_MenuItem.Click += new System.EventHandler(this.exit_MenuItem_Click);
+            // 
+            // Hide_Btn
+            // 
+            this.Hide_Btn.Location = new System.Drawing.Point(12, 75);
+            this.Hide_Btn.Name = "Hide_Btn";
+            this.Hide_Btn.Size = new System.Drawing.Size(96, 23);
+            this.Hide_Btn.TabIndex = 1;
+            this.Hide_Btn.Text = "숨기기";
+            this.Hide_Btn.UseVisualStyleBackColor = true;
+            this.Hide_Btn.Click += new System.EventHandler(this.Hide_Btn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(120, 201);
+            this.Controls.Add(this.Hide_Btn);
             this.Controls.Add(this.OpenMacro_Btn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "이거라도 해라";
+            this.Text = "이거라도 하셈";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
+            this.ctxt_Menu1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button Macro1_btn;
         private System.Windows.Forms.Button OpenMacro_Btn;
+        private System.Windows.Forms.NotifyIcon NotifyIcon;
+        private System.Windows.Forms.ContextMenuStrip ctxt_Menu1;
+        private System.Windows.Forms.ToolStripMenuItem exit_MenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Macro_MenuItem;
+        private System.Windows.Forms.Button Hide_Btn;
     }
 }
 

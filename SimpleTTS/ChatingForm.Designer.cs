@@ -33,26 +33,25 @@
             // 
             // chat_tBox
             // 
-            this.chat_tBox.Location = new System.Drawing.Point(7, 5);
+            this.chat_tBox.Location = new System.Drawing.Point(1, 1);
+            this.chat_tBox.Margin = new System.Windows.Forms.Padding(0);
             this.chat_tBox.Name = "chat_tBox";
             this.chat_tBox.Size = new System.Drawing.Size(375, 21);
             this.chat_tBox.TabIndex = 0;
             // 
             // ChatingForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(387, 30);
-            this.ControlBox = false;
+            this.ClientSize = new System.Drawing.Size(378, 24);
             this.Controls.Add(this.chat_tBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
             this.Name = "ChatingForm";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "ChatingForm";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.ChatingForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

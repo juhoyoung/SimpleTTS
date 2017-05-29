@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,7 +13,6 @@ namespace SimpleTTS
 {
     public partial class ChatingForm : Form
     {
-        TTS ts = new TTS();
         public ChatingForm()
         {
             InitializeComponent();
@@ -23,12 +23,15 @@ namespace SimpleTTS
         {
             if (!base.ProcessCmdKey(ref msg, keyData))
             {
+                
+                Console.WriteLine(msg.WParam + " " + keyData);
                 if (keyData.Equals(Keys.Enter))  // 엔터키 눌렀을때 처리
                 {
                     //Console.WriteLine(chat_tBox.Text);
-                    if (ts.SaveAudio(chat_tBox.Text, "chat.mp3") == false)
-                        return true;
-                    ts.PlayMessage("chat.mp3");
+                    if (TTS.ts.SaveAudio(chat_tBox.Text, "chat.mp3") == true) // 메세지가 들어있을때만 플레이
+                    {
+                        TTS.ts.PlayMessage("chat.mp3");
+                    }
                     chat_tBox.Text = "";
                     this.Close();
                     return true;
@@ -42,6 +45,13 @@ namespace SimpleTTS
             {
                 return true;
             }
+        }
+
+        private void ChatingForm_Load(object sender, EventArgs e)
+        {
+            Console.WriteLine("채팅창 열림");
+           
+            
         }
     }
 

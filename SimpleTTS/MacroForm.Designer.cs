@@ -40,13 +40,16 @@
             this.skey3_tBox = new System.Windows.Forms.TextBox();
             this.skey2_tBox = new System.Windows.Forms.TextBox();
             this.skey1_tBox = new System.Windows.Forms.TextBox();
+            this.Macro_StatusStrip = new System.Windows.Forms.StatusStrip();
+            this.Macro_StatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.text_gBox.SuspendLayout();
             this.sKey_gBox.SuspendLayout();
+            this.Macro_StatusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // Save_Btn
             // 
-            this.Save_Btn.Location = new System.Drawing.Point(137, 244);
+            this.Save_Btn.Location = new System.Drawing.Point(137, 239);
             this.Save_Btn.Name = "Save_Btn";
             this.Save_Btn.Size = new System.Drawing.Size(75, 23);
             this.Save_Btn.TabIndex = 0;
@@ -84,7 +87,7 @@
             // 
             // Submit_Btn
             // 
-            this.Submit_Btn.Location = new System.Drawing.Point(233, 244);
+            this.Submit_Btn.Location = new System.Drawing.Point(233, 239);
             this.Submit_Btn.Name = "Submit_Btn";
             this.Submit_Btn.Size = new System.Drawing.Size(75, 23);
             this.Submit_Btn.TabIndex = 8;
@@ -158,11 +161,27 @@
             this.skey1_tBox.Text = "Alt + 1";
             this.skey1_tBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // Macro_StatusStrip
+            // 
+            this.Macro_StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Macro_StatusLabel1});
+            this.Macro_StatusStrip.Location = new System.Drawing.Point(0, 269);
+            this.Macro_StatusStrip.Name = "Macro_StatusStrip";
+            this.Macro_StatusStrip.Size = new System.Drawing.Size(426, 22);
+            this.Macro_StatusStrip.SizingGrip = false;
+            this.Macro_StatusStrip.TabIndex = 10;
+            // 
+            // Macro_StatusLabel1
+            // 
+            this.Macro_StatusLabel1.Name = "Macro_StatusLabel1";
+            this.Macro_StatusLabel1.Size = new System.Drawing.Size(0, 17);
+            // 
             // MacroForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(426, 291);
+            this.Controls.Add(this.Macro_StatusStrip);
             this.Controls.Add(this.sKey_gBox);
             this.Controls.Add(this.text_gBox);
             this.Controls.Add(this.Submit_Btn);
@@ -177,7 +196,10 @@
             this.text_gBox.PerformLayout();
             this.sKey_gBox.ResumeLayout(false);
             this.sKey_gBox.PerformLayout();
+            this.Macro_StatusStrip.ResumeLayout(false);
+            this.Macro_StatusStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -195,5 +217,7 @@
         private System.Windows.Forms.TextBox skey3_tBox;
         private System.Windows.Forms.TextBox skey2_tBox;
         private System.Windows.Forms.TextBox skey1_tBox;
+        private System.Windows.Forms.StatusStrip Macro_StatusStrip;
+        private System.Windows.Forms.ToolStripStatusLabel Macro_StatusLabel1;
     }
 }

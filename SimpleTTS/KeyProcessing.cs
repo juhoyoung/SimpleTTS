@@ -13,25 +13,41 @@ namespace SimpleTTS
 {
     class KeyProcessing
     {
+        private bool statusExit = false;
         static ChatingForm chatForm = new ChatingForm();
-        static TTS ts = new TTS();
         static bool KeyDown = false;
         static int vkCode;
+        static MainForm mForm;
 
-        public KeyProcessing()
+        public KeyProcessing(MainForm _mForm)
         {
-            SetHook();
+            mForm = _mForm;
+            //SetHook();
         }
         ~KeyProcessing()
         {
-            UnHook();
+            Console.WriteLine("KeyProcessing 소멸자 호출되었습니다.");
+
+            if (statusExit == true)
+            {
+                UnHook();
+                //Console.WriteLine("KeyProcessing 소멸자 호출 되었습니다.");
+            }
+            else
+            {
+                //MainForm mf = new MainForm();
+                //mf.ReStart_KeyProcess();
+                mForm.ReStart_KeyProcess();
+            }
+                
+           
         }
 
 
         [DllImport("user32.dll")]
         static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc callback, IntPtr hInstance, uint threadId);
-        [DllImport("user32.dll")]
 
+        [DllImport("user32.dll")]
         static extern bool UnhookWindowsHookEx(IntPtr hInstance);
 
         [DllImport("user32.dll")]
@@ -46,6 +62,7 @@ namespace SimpleTTS
         const int WM_KEYDOWN = 0x100;
         const int WM_ALTDOWN = 0x104;
         const int WM_KEYUP = 0x101;
+        const int WM_ALTUP = 0x105;
 
         private LowLevelKeyboardProc _proc = hookProc;
 
@@ -65,29 +82,60 @@ namespace SimpleTTS
         public static IntPtr hookProc(int code, IntPtr wParam, IntPtr lParam)
         {
 
-            Console.WriteLine(code + " " + wParam + " " + Marshal.ReadInt32(lParam));
+            //Console.WriteLine(code + " W=" + wParam + " I=" + Marshal.ReadInt32(lParam));
 
-            if (code > 0 && wParam == (IntPtr)WM_KEYDOWN && KeyDown == false)
+            if (code >= 0 && wParam == (IntPtr)WM_KEYDOWN && KeyDown == false) // ctrl 키 눌렀을때
             {
                 vkCode = Marshal.ReadInt32(lParam);
 
-                if (vkCode.ToString() == "162") // ctrl
+                if (vkCode.ToString() == "162") 
                 {
                     KeyDown = true;
                 }
-                return CallNextHookEx(hhook, code, (int)wParam, lParam);
+                
+                //return (IntPtr)1;
             }
-            else if (code >= 0 && wParam == (IntPtr)WM_KEYUP)
+            else if (code >= 0 && wParam == (IntPtr)WM_KEYUP) // ctrl 키 뗐을때
             {
                 vkCode = Marshal.ReadInt32(lParam);
 
-                if (vkCode.ToString() == "162") // ctrl
+                if (vkCode.ToString() == "162") 
                 {
-                    KeyDown = false;
+                    KeyDown = false;               
                 }
-                return CallNextHookEx(hhook, code, (int)wParam, lParam);
+                
+                //return (IntPtr)1;
             }
-            else if (code >= 0 && wParam == (IntPtr)WM_KEYDOWN)
+            else if (code >= 0 && wParam == (IntPtr)WM_ALTUP) // ALT 키 뗐을때
+            {
+                
+                vkCode = Marshal.ReadInt32(lParam);
+
+
+                if (vkCode.ToString() == "49")  // 1번 누름
+                {
+                    TTS.ts.PlayMessage("macro0.mp3");
+                }
+                else if (vkCode.ToString() == "50")  // 2번 누름
+                {
+                    TTS.ts.PlayMessage("macro1.mp3");
+                }
+                else if (vkCode.ToString() == "51")  // 3번 누름
+                {
+                    TTS.ts.PlayMessage("macro2.mp3");
+                }
+                else if (vkCode.ToString() == "52")  // 4번 누름
+                {
+                    TTS.ts.PlayMessage("macro3.mp3");
+                }
+
+                //return (IntPtr)1;
+                //return CallNextHookEx(hhook, code, (int)wParam, lParam);
+            }
+
+
+
+            if (code >= 0 && wParam == (IntPtr)WM_KEYDOWN && KeyDown == true)
             {
                 vkCode = Marshal.ReadInt32(lParam);
 
@@ -101,39 +149,18 @@ namespace SimpleTTS
                     {
                     }
                 }
-                return CallNextHookEx(hhook, code, (int)wParam, lParam);
-            }
-            else if (code >= 0 && wParam == (IntPtr)WM_ALTDOWN) 
-            {
-                
-                vkCode = Marshal.ReadInt32(lParam);
-
-
-                if (vkCode.ToString() == "49")  // 1번 누름
-                {
-                    ts.PlayMessage("macro0.mp3");
-                }
-                else if (vkCode.ToString() == "50")  // 2번 누름
-                {
-                    ts.PlayMessage("macro1.mp3");
-                }
-                else if (vkCode.ToString() == "51")  // 3번 누름
-                {
-                    ts.PlayMessage("macro2.mp3");
-                }
-                else if (vkCode.ToString() == "52")  // 4번 누름
-                {
-                    ts.PlayMessage("macro3.mp3");
-                }
-
-                return CallNextHookEx(hhook, code, (int)wParam, lParam);
-            }
-            else
-            {
-                return CallNextHookEx(hhook, code, (int)wParam, lParam);
             }
 
 
+            return CallNextHookEx(hhook, code, (int)wParam, lParam);
+
+        }
+
+
+        public void setStatus(bool status)
+        {
+            Console.WriteLine("Status 변화 " + status);
+            statusExit = status;
         }
 
     }
