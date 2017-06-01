@@ -20,5 +20,17 @@
     <Setting Name="vType" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="isTrans" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="clientID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">입력</Value>
+    </Setting>
+    <Setting Name="clientSecret" Type="System.String" Scope="User">
+      <Value Profile="(Default)">입력</Value>
+    </Setting>
+    <Setting Name="tType" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

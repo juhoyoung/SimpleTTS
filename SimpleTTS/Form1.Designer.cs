@@ -33,6 +33,7 @@
             this.OpenMacro_Btn = new System.Windows.Forms.Button();
             this.NotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.ctxt_Menu1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.Lang_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Macro_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exit_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Hide_Btn = new System.Windows.Forms.Button();
@@ -61,10 +62,18 @@
             // ctxt_Menu1
             // 
             this.ctxt_Menu1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Lang_MenuItem,
             this.Macro_MenuItem,
             this.exit_MenuItem});
             this.ctxt_Menu1.Name = "ctxt_Menu1";
-            this.ctxt_Menu1.Size = new System.Drawing.Size(139, 48);
+            this.ctxt_Menu1.Size = new System.Drawing.Size(139, 70);
+            // 
+            // Lang_MenuItem
+            // 
+            this.Lang_MenuItem.Name = "Lang_MenuItem";
+            this.Lang_MenuItem.Size = new System.Drawing.Size(138, 22);
+            this.Lang_MenuItem.Text = "언어 설정";
+            this.Lang_MenuItem.Click += new System.EventHandler(this.OpenLang_Btn_Click);
             // 
             // Macro_MenuItem
             // 
@@ -115,7 +124,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "이거라도 하셈";
+            this.Text = "숨겨진 목소리";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.ctxt_Menu1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -131,6 +140,7 @@
         private System.Windows.Forms.ToolStripMenuItem Macro_MenuItem;
         private System.Windows.Forms.Button Hide_Btn;
         private System.Windows.Forms.Button OpenLang_Btn;
+        private System.Windows.Forms.ToolStripMenuItem Lang_MenuItem;
     }
 }
 

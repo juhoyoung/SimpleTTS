@@ -7,7 +7,7 @@
     <ProjectGuid>{5080440C-5C9D-416C-BA9C-CB61AFA638A9}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>SimpleTTS</RootNamespace>
-    <AssemblyName>SimpleTTS</AssemblyName>
+    <AssemblyName>A Hidden Voice</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -76,6 +76,7 @@
     <Compile Include="MacroForm.Designer.cs">
       <DependentUpon>MacroForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NaverTranslateAPI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TTS.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
