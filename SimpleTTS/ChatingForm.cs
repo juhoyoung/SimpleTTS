@@ -24,7 +24,7 @@ namespace SimpleTTS
             if (!base.ProcessCmdKey(ref msg, keyData))
             {
                 
-                Console.WriteLine(msg.WParam + " " + keyData);
+                // Console.WriteLine(msg.WParam + " " + keyData);
                 if (keyData.Equals(Keys.Enter))  // 엔터키 눌렀을때 처리
                 {
                     //Console.WriteLine(chat_tBox.Text);

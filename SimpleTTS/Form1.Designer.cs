@@ -36,15 +36,17 @@
             this.Macro_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exit_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Hide_Btn = new System.Windows.Forms.Button();
+            this.OpenLang_Btn = new System.Windows.Forms.Button();
             this.ctxt_Menu1.SuspendLayout();
             this.SuspendLayout();
             // 
             // OpenMacro_Btn
             // 
-            this.OpenMacro_Btn.Location = new System.Drawing.Point(13, 24);
+            this.OpenMacro_Btn.Location = new System.Drawing.Point(13, 75);
             this.OpenMacro_Btn.Name = "OpenMacro_Btn";
             this.OpenMacro_Btn.Size = new System.Drawing.Size(95, 23);
-            this.OpenMacro_Btn.TabIndex = 0;
+            this.OpenMacro_Btn.TabIndex = 1;
+            this.OpenMacro_Btn.TabStop = false;
             this.OpenMacro_Btn.Text = "매크로 설정";
             this.OpenMacro_Btn.UseVisualStyleBackColor = true;
             this.OpenMacro_Btn.Click += new System.EventHandler(this.OpenMacro_Btn_Click);
@@ -80,13 +82,25 @@
             // 
             // Hide_Btn
             // 
-            this.Hide_Btn.Location = new System.Drawing.Point(12, 75);
+            this.Hide_Btn.Location = new System.Drawing.Point(12, 125);
             this.Hide_Btn.Name = "Hide_Btn";
             this.Hide_Btn.Size = new System.Drawing.Size(96, 23);
-            this.Hide_Btn.TabIndex = 1;
+            this.Hide_Btn.TabIndex = 2;
+            this.Hide_Btn.TabStop = false;
             this.Hide_Btn.Text = "숨기기";
             this.Hide_Btn.UseVisualStyleBackColor = true;
             this.Hide_Btn.Click += new System.EventHandler(this.Hide_Btn_Click);
+            // 
+            // OpenLang_Btn
+            // 
+            this.OpenLang_Btn.Location = new System.Drawing.Point(12, 25);
+            this.OpenLang_Btn.Name = "OpenLang_Btn";
+            this.OpenLang_Btn.Size = new System.Drawing.Size(95, 23);
+            this.OpenLang_Btn.TabIndex = 0;
+            this.OpenLang_Btn.TabStop = false;
+            this.OpenLang_Btn.Text = "언어 설정";
+            this.OpenLang_Btn.UseVisualStyleBackColor = true;
+            this.OpenLang_Btn.Click += new System.EventHandler(this.OpenLang_Btn_Click);
             // 
             // MainForm
             // 
@@ -94,6 +108,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(120, 201);
+            this.Controls.Add(this.OpenLang_Btn);
             this.Controls.Add(this.Hide_Btn);
             this.Controls.Add(this.OpenMacro_Btn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -115,6 +130,7 @@
         private System.Windows.Forms.ToolStripMenuItem exit_MenuItem;
         private System.Windows.Forms.ToolStripMenuItem Macro_MenuItem;
         private System.Windows.Forms.Button Hide_Btn;
+        private System.Windows.Forms.Button OpenLang_Btn;
     }
 }
 

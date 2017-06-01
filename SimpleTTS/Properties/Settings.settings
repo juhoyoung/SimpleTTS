@@ -1,7 +1,24 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SimpleTTS.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="m1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">하고싶은 말을 적으세요 1</Value>
+    </Setting>
+    <Setting Name="m2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">하고싶은 말을 적으세요 2</Value>
+    </Setting>
+    <Setting Name="m3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">하고싶은 말을 적으세요 3</Value>
+    </Setting>
+    <Setting Name="m4" Type="System.String" Scope="User">
+      <Value Profile="(Default)">하고싶은 말을 적으세요 4</Value>
+    </Setting>
+    <Setting Name="lType" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="vType" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

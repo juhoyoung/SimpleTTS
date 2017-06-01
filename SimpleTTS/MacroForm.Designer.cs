@@ -192,6 +192,7 @@
             this.Name = "MacroForm";
             this.Text = "매크로 설정 창";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.MacroForm_Load);
             this.text_gBox.ResumeLayout(false);
             this.text_gBox.PerformLayout();
             this.sKey_gBox.ResumeLayout(false);

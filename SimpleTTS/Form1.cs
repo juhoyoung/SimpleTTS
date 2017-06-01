@@ -13,8 +13,11 @@ namespace SimpleTTS
 {
     public partial class MainForm : Form
     {
+        private MacroForm macroForm = new MacroForm();
+        private LanguageForm langForm = new LanguageForm();
+        private KeyProcessing kProcess;
 
-        KeyProcessing kProcess;
+
         public MainForm()
         {
             InitializeComponent();
@@ -23,11 +26,11 @@ namespace SimpleTTS
 
         }
 
-        private void OpenMacro_Btn_Click(object sender, EventArgs e)
+        private void OpenMacro_Btn_Click(object sender, EventArgs e) // 매크로 설정창 활성화 시킴
         {
-            MacroForm mForm = new MacroForm();
+            
 
-            mForm.ShowDialog(); // 매크로 설정창 활성화 시킴
+            macroForm.ShowDialog(); 
         }
 
         private void NotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e) // 트레이아이콘 더블 클릭
@@ -51,6 +54,12 @@ namespace SimpleTTS
         {
             //KeyProcessing k = new KeyProcessing();
             kProcess.SetHook();
+        }
+
+        private void OpenLang_Btn_Click(object sender, EventArgs e) // 언어 설정창 열기
+        {
+            langForm.ShowDialog();
+
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)

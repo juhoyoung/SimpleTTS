@@ -14,8 +14,29 @@ namespace SimpleTTS
     {
         public static TTS ts = new TTS(); // 싱글톤
         WMPLib.WindowsMediaPlayer wPlayer = new WMPLib.WindowsMediaPlayer();
-        WebClient webClient = new WebClient();
-        string path;
+        private WebClient webClient = new WebClient();
+        private string path; // 파일 경로
+        private int langType = 0; // 어느나라 사람이 읽는지. 0=한국 1=영어권
+        private int voiceType = 0; // 목소리 타입. 0=구글 1=네이버
+        
+
+        public TTS()
+        {
+            langType = Properties.Settings.Default.lType;
+            voiceType = Properties.Settings.Default.vType;
+            //Console.WriteLine("TTS 생성");
+        }
+
+        public void setLangType(int Type) // 0=한국 1=영어권
+        {
+            langType = Type;
+        }
+
+        public void setVoiceType(int Type) // 목소리 종류 설정
+        {
+            voiceType = Type;
+        }
+
 
 
         public bool SaveAudio(String Message, String fName) // TTS 파일 저장
@@ -28,11 +49,10 @@ namespace SimpleTTS
 
             wPlayer.URL = System.Windows.Forms.Application.StartupPath + @"\sound\dummy.mp3"; // 더미파일 재생
             wPlayer.controls.play();
-
+            
             try
             {
-                webClient.DownloadFile("https://translate.google.com/translate_tts?ie=UTF-8&total=1&idx=0&textlen=32&client=tw-ob&q=" + Message + "&tl=ko-kr",
-                    path);
+                webClient.DownloadFile(getVoiceURL(Message),path);
             }
             catch (WebException e)
             {
@@ -72,6 +92,40 @@ namespace SimpleTTS
             else
                 return false;
 
+        }
+
+        public String getVoiceURL(String Message) // 보이스 주소 구해주기
+        {
+            String voiceURL = ""; // 목소리 주소
+
+            if (voiceType == 0) // 구글
+            {
+                switch (langType)
+                {
+                    case 0: // 한국인
+                        voiceURL = "https://translate.google.com/translate_tts?ie=UTF-8&total=1&idx=0&textlen=32&client=tw-ob&q=" + Message + "&tl=ko-kr";
+                        break;
+                    case 1: // 영어인
+                        voiceURL = "https://translate.google.com/translate_tts?ie=UTF-8&total=1&idx=0&textlen=32&client=tw-ob&q=" + Message + "&tl=en";
+                        break;
+                }
+            }
+            else if (voiceType == 1)
+            {
+                switch (langType)
+                {
+                    case 0: // 한국인
+                        voiceURL = "https://m.search.naver.com/p/csearch/ocontent/util/ttsProxy.nhn?service=nco_translate&from=pc_search&speech_fmt=mp3" +
+                            "&passportKey=e2f13734bbe4ef5da73790792c00585659b07231&speaker=mijin&text=" + Message;
+                        break;
+                    case 1: // 영어인
+                        voiceURL = "https://m.search.naver.com/p/csearch/ocontent/util/ttsProxy.nhn?service=nco_translate&from=pc_search&speech_fmt=mp3" +
+                            "&speed=0&passportKey=e2f13734bbe4ef5da73790792c00585659b07231&speaker=clara&text=" + Message;
+                        break;
+                }
+            }
+
+            return voiceURL;
         }
 
         private static DateTime Delay(int MS)
