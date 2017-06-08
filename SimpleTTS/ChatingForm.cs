@@ -24,7 +24,10 @@ namespace SimpleTTS
             if (!base.ProcessCmdKey(ref msg, keyData))
             {
                 
-                // Console.WriteLine(msg.WParam + " " + keyData);
+                //Console.WriteLine(msg.WParam + " " + keyData);
+                //String path = System.Windows.Forms.Application.StartupPath + @"1.txt";
+                //System.IO.File.AppendAllText(path, msg.WParam + " " + keyData +" \r\n");
+
                 if (keyData.Equals(Keys.Enter))  // 엔터키 눌렀을때 처리
                 {
                     //Console.WriteLine(chat_tBox.Text);
@@ -46,7 +49,7 @@ namespace SimpleTTS
                 return true;
             }
         }
-
+        
         private void ChatingForm_Load(object sender, EventArgs e)
         {
             Console.WriteLine("채팅창 열림");

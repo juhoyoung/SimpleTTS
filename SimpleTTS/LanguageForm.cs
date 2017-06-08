@@ -38,11 +38,13 @@ namespace SimpleTTS
             Properties.Settings.Default.tType = tType_cBox.SelectedIndex;     // 번역 언어
             Properties.Settings.Default.clientID = cID_tBox.Text;             // ID
             Properties.Settings.Default.clientSecret = cSecret_tBox.Text;     // secetID
+            Properties.Settings.Default.isPTT = Ptt_checkBox.Checked;         // PTT 여부
 
             Properties.Settings.Default.Save(); // 저장
 
             TTS.ts.setLangType(LangType_cBox.SelectedIndex); // TTS에 현재 타입 전달
             TTS.ts.setVoiceType(voiceType_cBox.SelectedIndex);
+            TTS.ts.setPTT(Ptt_checkBox.Checked);            // TTS에 PTT 사용여부 전달
             Lang_StatusLabel1.Text = "저장 완료";
         }
 
@@ -54,6 +56,7 @@ namespace SimpleTTS
             tType_cBox.SelectedIndex = Properties.Settings.Default.tType;
             cID_tBox.Text = Properties.Settings.Default.clientID;
             cSecret_tBox.Text = Properties.Settings.Default.clientSecret;
+            Ptt_checkBox.Checked = Properties.Settings.Default.isPTT;        
         }
 
         private void Trans_checkBox_CheckedChanged(object sender, EventArgs e)

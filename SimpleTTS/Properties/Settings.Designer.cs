@@ -142,5 +142,17 @@ namespace SimpleTTS.Properties {
                 this["tType"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isPTT {
+            get {
+                return ((bool)(this["isPTT"]));
+            }
+            set {
+                this["isPTT"] = value;
+            }
+        }
     }
 }

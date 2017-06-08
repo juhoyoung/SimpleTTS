@@ -31,6 +31,9 @@
             this.LangType_cBox = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tType_cBox = new System.Windows.Forms.ComboBox();
+            this.cSecret_tBox = new System.Windows.Forms.TextBox();
             this.cID_tBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,13 +44,13 @@
             this.Submit_Btn = new System.Windows.Forms.Button();
             this.Lang_StatusStrip = new System.Windows.Forms.StatusStrip();
             this.Lang_StatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.cSecret_tBox = new System.Windows.Forms.TextBox();
-            this.tType_cBox = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.Ptt_checkBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.Lang_StatusStrip.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // LangType_cBox
@@ -59,7 +62,7 @@
             "중국인"});
             this.LangType_cBox.Location = new System.Drawing.Point(7, 30);
             this.LangType_cBox.Name = "LangType_cBox";
-            this.LangType_cBox.Size = new System.Drawing.Size(120, 20);
+            this.LangType_cBox.Size = new System.Drawing.Size(110, 20);
             this.LangType_cBox.TabIndex = 0;
             this.LangType_cBox.TabStop = false;
             // 
@@ -68,7 +71,7 @@
             this.groupBox1.Controls.Add(this.LangType_cBox);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(145, 70);
+            this.groupBox1.Size = new System.Drawing.Size(135, 70);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "언어 설정";
@@ -88,6 +91,35 @@
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "번역";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(136, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 12);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "한국어 ->";
+            // 
+            // tType_cBox
+            // 
+            this.tType_cBox.FormattingEnabled = true;
+            this.tType_cBox.Items.AddRange(new object[] {
+            "영어",
+            "중국어"});
+            this.tType_cBox.Location = new System.Drawing.Point(200, 16);
+            this.tType_cBox.Name = "tType_cBox";
+            this.tType_cBox.Size = new System.Drawing.Size(81, 20);
+            this.tType_cBox.TabIndex = 5;
+            this.tType_cBox.TabStop = false;
+            // 
+            // cSecret_tBox
+            // 
+            this.cSecret_tBox.Location = new System.Drawing.Point(106, 69);
+            this.cSecret_tBox.Name = "cSecret_tBox";
+            this.cSecret_tBox.Size = new System.Drawing.Size(177, 21);
+            this.cSecret_tBox.TabIndex = 4;
+            this.cSecret_tBox.TabStop = false;
             // 
             // cID_tBox
             // 
@@ -130,9 +162,9 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.voiceType_cBox);
-            this.groupBox3.Location = new System.Drawing.Point(172, 12);
+            this.groupBox3.Location = new System.Drawing.Point(166, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(145, 70);
+            this.groupBox3.Size = new System.Drawing.Size(135, 70);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "목소리 설정";
@@ -145,26 +177,28 @@
             "2번 타입"});
             this.voiceType_cBox.Location = new System.Drawing.Point(9, 30);
             this.voiceType_cBox.Name = "voiceType_cBox";
-            this.voiceType_cBox.Size = new System.Drawing.Size(120, 20);
+            this.voiceType_cBox.Size = new System.Drawing.Size(110, 20);
             this.voiceType_cBox.TabIndex = 0;
             this.voiceType_cBox.TabStop = false;
             // 
             // Save_Btn
             // 
-            this.Save_Btn.Location = new System.Drawing.Point(82, 215);
+            this.Save_Btn.Location = new System.Drawing.Point(160, 211);
             this.Save_Btn.Name = "Save_Btn";
             this.Save_Btn.Size = new System.Drawing.Size(75, 23);
             this.Save_Btn.TabIndex = 3;
+            this.Save_Btn.TabStop = false;
             this.Save_Btn.Text = "저장";
             this.Save_Btn.UseVisualStyleBackColor = true;
             this.Save_Btn.Click += new System.EventHandler(this.Save_Btn_Click);
             // 
             // Submit_Btn
             // 
-            this.Submit_Btn.Location = new System.Drawing.Point(172, 215);
+            this.Submit_Btn.Location = new System.Drawing.Point(250, 211);
             this.Submit_Btn.Name = "Submit_Btn";
             this.Submit_Btn.Size = new System.Drawing.Size(75, 23);
             this.Submit_Btn.TabIndex = 4;
+            this.Submit_Btn.TabStop = false;
             this.Submit_Btn.Text = "확인";
             this.Submit_Btn.UseVisualStyleBackColor = true;
             this.Submit_Btn.Click += new System.EventHandler(this.Submit_Btn_Click);
@@ -175,7 +209,7 @@
             this.Lang_StatusLabel1});
             this.Lang_StatusStrip.Location = new System.Drawing.Point(0, 246);
             this.Lang_StatusStrip.Name = "Lang_StatusStrip";
-            this.Lang_StatusStrip.Size = new System.Drawing.Size(332, 22);
+            this.Lang_StatusStrip.Size = new System.Drawing.Size(460, 22);
             this.Lang_StatusStrip.TabIndex = 5;
             this.Lang_StatusStrip.Text = "statusStrip1";
             // 
@@ -184,40 +218,33 @@
             this.Lang_StatusLabel1.Name = "Lang_StatusLabel1";
             this.Lang_StatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // cSecret_tBox
+            // groupBox4
             // 
-            this.cSecret_tBox.Location = new System.Drawing.Point(106, 69);
-            this.cSecret_tBox.Name = "cSecret_tBox";
-            this.cSecret_tBox.Size = new System.Drawing.Size(177, 21);
-            this.cSecret_tBox.TabIndex = 4;
-            this.cSecret_tBox.TabStop = false;
+            this.groupBox4.Controls.Add(this.Ptt_checkBox);
+            this.groupBox4.Location = new System.Drawing.Point(308, 13);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(140, 69);
+            this.groupBox4.TabIndex = 6;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "푸시 투 토크";
             // 
-            // tType_cBox
+            // Ptt_checkBox
             // 
-            this.tType_cBox.FormattingEnabled = true;
-            this.tType_cBox.Items.AddRange(new object[] {
-            "영어",
-            "중국어"});
-            this.tType_cBox.Location = new System.Drawing.Point(200, 16);
-            this.tType_cBox.Name = "tType_cBox";
-            this.tType_cBox.Size = new System.Drawing.Size(81, 20);
-            this.tType_cBox.TabIndex = 5;
-            this.tType_cBox.TabStop = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(136, 20);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 12);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "한국어 ->";
+            this.Ptt_checkBox.AutoSize = true;
+            this.Ptt_checkBox.Location = new System.Drawing.Point(9, 31);
+            this.Ptt_checkBox.Name = "Ptt_checkBox";
+            this.Ptt_checkBox.Size = new System.Drawing.Size(76, 16);
+            this.Ptt_checkBox.TabIndex = 0;
+            this.Ptt_checkBox.TabStop = false;
+            this.Ptt_checkBox.Text = "PTT 사용";
+            this.Ptt_checkBox.UseVisualStyleBackColor = true;
             // 
             // LanguageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(332, 268);
+            this.ClientSize = new System.Drawing.Size(460, 268);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.Lang_StatusStrip);
             this.Controls.Add(this.Submit_Btn);
             this.Controls.Add(this.Save_Btn);
@@ -237,6 +264,8 @@
             this.groupBox3.ResumeLayout(false);
             this.Lang_StatusStrip.ResumeLayout(false);
             this.Lang_StatusStrip.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,5 +289,7 @@
         private System.Windows.Forms.TextBox cSecret_tBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox tType_cBox;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.CheckBox Ptt_checkBox;
     }
 }

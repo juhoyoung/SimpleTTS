@@ -16,6 +16,7 @@ namespace SimpleTTS
     {
         private MacroForm macroForm = new MacroForm();
         private LanguageForm langForm = new LanguageForm();
+        private HotKeyForm hotForm = new HotKeyForm();
         private KeyProcessing kProcess;
 
 
@@ -24,7 +25,6 @@ namespace SimpleTTS
             InitializeComponent();
             kProcess = new KeyProcessing(this);
             kProcess.SetHook();
-
         }
 
         private void OpenMacro_Btn_Click(object sender, EventArgs e) // 매크로 설정창 활성화 시킴
@@ -36,6 +36,7 @@ namespace SimpleTTS
 
         private void NotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e) // 트레이아이콘 더블 클릭
         {
+            this.NotifyIcon.Visible = false;
             this.Show();
         }
 
@@ -68,5 +69,9 @@ namespace SimpleTTS
             kProcess.setStatus(true);
         }
 
+        private void OpenHoyKey_Btn_Click(object sender, EventArgs e) // 단축키 설정창 열기
+        {
+            hotForm.ShowDialog();
+        }
     }
 }

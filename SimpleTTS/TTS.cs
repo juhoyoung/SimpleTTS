@@ -4,26 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using System.Media;
+//using System.Media;
 using System.Net;
 using System.Threading;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace SimpleTTS
 {
     class TTS
     {
+
+        [DllImport("user32.dll")]
+        static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, int dwExtraInfo); // 키보드 입력
+
+
         public static TTS ts = new TTS(); // 싱글톤
         WMPLib.WindowsMediaPlayer wPlayer = new WMPLib.WindowsMediaPlayer();
         private WebClient webClient = new WebClient();
         private string path; // 파일 경로
         private int langType = 0; // 어느나라 사람이 읽는지. 0=한국 1=영어권
         private int voiceType = 0; // 목소리 타입. 0=구글 1=네이버
+        private bool isPTT = false; // 눌러서 말하기 사용 여부
         
 
         public TTS()
         {
             langType = Properties.Settings.Default.lType;
             voiceType = Properties.Settings.Default.vType;
+            wPlayer.StatusChange += WPlayer_StatusChange; // 이벤트 등록
             //Console.WriteLine("TTS 생성");
         }
 
@@ -35,6 +44,11 @@ namespace SimpleTTS
         public void setVoiceType(int Type) // 목소리 종류 설정
         {
             voiceType = Type;
+        }
+
+        public void setPTT(bool isPTT) // 푸시 투 토크 쓸건지.
+        {
+            this.isPTT = isPTT;
         }
 
 
@@ -92,14 +106,33 @@ namespace SimpleTTS
         public void PlayMessage(String fName) // 저장된 파일 재생
         {
             Delay(100);
-            //Console.WriteLine(fName + " 재생 합니다.");
-            path = System.Windows.Forms.Application.StartupPath + @"\sound\" + fName;
 
+            path = System.Windows.Forms.Application.StartupPath + @"\sound\" + fName;
+            
             wPlayer.URL = path;
+            
             wPlayer.controls.play();
+            
             
 
 
+        }
+
+        private void WPlayer_StatusChange() // 영상 재생 상태 바뀔때 동작
+        {
+            // Console.WriteLine(wPlayer.status);
+
+            if (isPTT == true)
+            {
+                if (wPlayer.status.Equals("중지됨"))
+                {
+                    keybd_event((byte)Keys.Oemtilde, 0, 0x102, 0); // 손뗌
+                }
+                else if (wPlayer.status.Contains("재생"))
+                {
+                    keybd_event((byte)Keys.Oemtilde, 0, 0x100, 0); // 누름
+                }
+            }
         }
 
         public bool fileExist(String fName) // 파일 존재 여부

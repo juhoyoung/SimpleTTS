@@ -17,7 +17,8 @@ namespace SimpleTTS
 
 
         public String translate(String Message)
-        { 
+        {
+            
             string url = "https://openapi.naver.com/v1/language/translate";
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             

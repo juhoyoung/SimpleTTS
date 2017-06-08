@@ -38,12 +38,13 @@
             this.exit_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Hide_Btn = new System.Windows.Forms.Button();
             this.OpenLang_Btn = new System.Windows.Forms.Button();
+            this.OpenHoyKey_Btn = new System.Windows.Forms.Button();
             this.ctxt_Menu1.SuspendLayout();
             this.SuspendLayout();
             // 
             // OpenMacro_Btn
             // 
-            this.OpenMacro_Btn.Location = new System.Drawing.Point(13, 75);
+            this.OpenMacro_Btn.Location = new System.Drawing.Point(13, 60);
             this.OpenMacro_Btn.Name = "OpenMacro_Btn";
             this.OpenMacro_Btn.Size = new System.Drawing.Size(95, 23);
             this.OpenMacro_Btn.TabIndex = 1;
@@ -91,7 +92,7 @@
             // 
             // Hide_Btn
             // 
-            this.Hide_Btn.Location = new System.Drawing.Point(12, 125);
+            this.Hide_Btn.Location = new System.Drawing.Point(13, 140);
             this.Hide_Btn.Name = "Hide_Btn";
             this.Hide_Btn.Size = new System.Drawing.Size(96, 23);
             this.Hide_Btn.TabIndex = 2;
@@ -102,7 +103,7 @@
             // 
             // OpenLang_Btn
             // 
-            this.OpenLang_Btn.Location = new System.Drawing.Point(12, 25);
+            this.OpenLang_Btn.Location = new System.Drawing.Point(12, 20);
             this.OpenLang_Btn.Name = "OpenLang_Btn";
             this.OpenLang_Btn.Size = new System.Drawing.Size(95, 23);
             this.OpenLang_Btn.TabIndex = 0;
@@ -111,12 +112,24 @@
             this.OpenLang_Btn.UseVisualStyleBackColor = true;
             this.OpenLang_Btn.Click += new System.EventHandler(this.OpenLang_Btn_Click);
             // 
+            // OpenHoyKey_Btn
+            // 
+            this.OpenHoyKey_Btn.Location = new System.Drawing.Point(13, 100);
+            this.OpenHoyKey_Btn.Name = "OpenHoyKey_Btn";
+            this.OpenHoyKey_Btn.Size = new System.Drawing.Size(95, 23);
+            this.OpenHoyKey_Btn.TabIndex = 3;
+            this.OpenHoyKey_Btn.TabStop = false;
+            this.OpenHoyKey_Btn.Text = "단축키 설정";
+            this.OpenHoyKey_Btn.UseVisualStyleBackColor = true;
+            this.OpenHoyKey_Btn.Click += new System.EventHandler(this.OpenHoyKey_Btn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CausesValidation = false;
-            this.ClientSize = new System.Drawing.Size(120, 201);
+            this.ClientSize = new System.Drawing.Size(120, 179);
+            this.Controls.Add(this.OpenHoyKey_Btn);
             this.Controls.Add(this.OpenLang_Btn);
             this.Controls.Add(this.Hide_Btn);
             this.Controls.Add(this.OpenMacro_Btn);
@@ -141,6 +154,7 @@
         private System.Windows.Forms.Button Hide_Btn;
         private System.Windows.Forms.Button OpenLang_Btn;
         private System.Windows.Forms.ToolStripMenuItem Lang_MenuItem;
+        private System.Windows.Forms.Button OpenHoyKey_Btn;
     }
 }
 

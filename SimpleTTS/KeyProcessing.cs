@@ -13,11 +13,44 @@ namespace SimpleTTS
 {
     class KeyProcessing
     {
+
+        
         private bool statusExit = false;
         static ChatingForm chatForm = new ChatingForm();
         static bool KeyDown = false;
         static int vkCode;
         static MainForm mForm;
+
+        [DllImport("user32.dll")]
+        static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc callback, IntPtr hInstance, uint threadId);
+
+        [DllImport("user32.dll")]
+        static extern bool UnhookWindowsHookEx(IntPtr hInstance);
+
+        [DllImport("user32.dll")]
+        static extern IntPtr CallNextHookEx(IntPtr idHook, int nCode, int wParam, IntPtr lParam);
+
+        [DllImport("kernel32.dll")]
+        static extern IntPtr LoadLibrary(string lpFileName);
+
+
+
+
+
+        private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
+
+        const int WH_KEYBOARD_LL = 13;
+        const int WM_KEYDOWN = 0x100;
+        const int WM_ALTDOWN = 0x104;
+        const int WM_KEYUP = 0x101;
+        const int WM_ALTUP = 0x105;
+
+        private LowLevelKeyboardProc _proc = hookProc;
+
+        private static IntPtr hhook = IntPtr.Zero;
+
+
+
 
         public KeyProcessing(MainForm _mForm)
         {
@@ -44,30 +77,6 @@ namespace SimpleTTS
         }
 
 
-        [DllImport("user32.dll")]
-        static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc callback, IntPtr hInstance, uint threadId);
-
-        [DllImport("user32.dll")]
-        static extern bool UnhookWindowsHookEx(IntPtr hInstance);
-
-        [DllImport("user32.dll")]
-        static extern IntPtr CallNextHookEx(IntPtr idHook, int nCode, int wParam, IntPtr lParam);
-
-        [DllImport("kernel32.dll")]
-        static extern IntPtr LoadLibrary(string lpFileName);
-
-        private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
-
-        const int WH_KEYBOARD_LL = 13;
-        const int WM_KEYDOWN = 0x100;
-        const int WM_ALTDOWN = 0x104;
-        const int WM_KEYUP = 0x101;
-        const int WM_ALTUP = 0x105;
-
-        private LowLevelKeyboardProc _proc = hookProc;
-
-        private static IntPtr hhook = IntPtr.Zero;
-
         public void SetHook()
         {
             IntPtr hInstance = LoadLibrary("User32");
@@ -81,32 +90,32 @@ namespace SimpleTTS
 
         public static IntPtr hookProc(int code, IntPtr wParam, IntPtr lParam)
         {
-
+            
             //Console.WriteLine(code + " W=" + wParam + " I=" + Marshal.ReadInt32(lParam));
 
-            if (code >= 0 && wParam == (IntPtr)WM_KEYDOWN && KeyDown == false) // ctrl 키 눌렀을때
+            if (code >= 0 && wParam == (IntPtr)WM_KEYDOWN && KeyDown == false)
             {
                 vkCode = Marshal.ReadInt32(lParam);
 
-                if (vkCode.ToString() == "162") 
+                if (vkCode.ToString() == "162") // ctrl 키 눌렀을때
                 {
                     KeyDown = true;
                 }
                 
                 //return (IntPtr)1;
             }
-            else if (code >= 0 && wParam == (IntPtr)WM_KEYUP) // ctrl 키 뗐을때
+            else if (code >= 0 && wParam == (IntPtr)WM_KEYUP) 
             {
                 vkCode = Marshal.ReadInt32(lParam);
 
-                if (vkCode.ToString() == "162") 
+                if (vkCode.ToString() == "162") // ctrl 키 뗐을때
                 {
                     KeyDown = false;               
                 }
                 
                 //return (IntPtr)1;
             }
-            else if (code >= 0 && wParam == (IntPtr)WM_ALTUP) // ALT 키 뗐을때
+            else if (code >= 0 && wParam == (IntPtr)WM_ALTDOWN) // ALT 키 눌렀을때
             {
                 
                 vkCode = Marshal.ReadInt32(lParam);
@@ -151,9 +160,8 @@ namespace SimpleTTS
                 }
             }
 
-
             return CallNextHookEx(hhook, code, (int)wParam, lParam);
-
+            
         }
 
 
