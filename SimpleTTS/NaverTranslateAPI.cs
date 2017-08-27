@@ -22,8 +22,8 @@ namespace SimpleTTS
             string url = "https://openapi.naver.com/v1/language/translate";
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             
-            request.Headers.Add("X-Naver-Client-Id", Properties.Settings.Default.clientID); // 네이버에서 받아야함 ID
-            request.Headers.Add("X-Naver-Client-Secret", Properties.Settings.Default.clientSecret); // secret
+            request.Headers.Add("X-Naver-Client-Id", Properties.Settings.Default.TclientID); // 네이버에서 받아야함 ID
+            request.Headers.Add("X-Naver-Client-Secret", Properties.Settings.Default.TclientSecret); // secret
             request.Method = "POST";
 
             

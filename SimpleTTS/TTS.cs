@@ -15,6 +15,23 @@ namespace SimpleTTS
     class TTS
     {
 
+        /// <summary>
+        /// 
+        /// mijin : 한국어, 여성 음색
+        /// jinho : 한국어, 남성 음색
+        /// clara : 영어, 여성 음색
+        /// matt  : 영어, 남성 음색
+        /// yuri   : 일본어, 여성 음색
+        /// shinji : 일본어, 남성 음색
+        /// meimei     : 중국어, 여성 음색
+        /// liangliang : 중국어, 남성 음색
+        /// jose   : 스페인어, 남성 음색
+        /// carmen : 스페인어, 여성 음색
+        ///
+        private String[,] Array_Speaker = { {"mijin" , "jinho"} ,
+                                      {"clara" , "matt" },
+                                      {"meimei", "liangliang" } }; 
+
         [DllImport("user32.dll")]
         static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, int dwExtraInfo); // 키보드 입력
 
@@ -26,12 +43,15 @@ namespace SimpleTTS
         private int langType = 0; // 어느나라 사람이 읽는지. 0=한국 1=영어권
         private int voiceType = 0; // 목소리 타입. 0=구글 1=네이버
         private bool isPTT = false; // 눌러서 말하기 사용 여부
+        private double pbSpeed = 1.0;
         
 
         public TTS()
         {
             langType = Properties.Settings.Default.lType;
             voiceType = Properties.Settings.Default.vType;
+            isPTT = Properties.Settings.Default.isPTT;
+            pbSpeed = Properties.Settings.Default.IPbSpeed / 10.0;
             wPlayer.StatusChange += WPlayer_StatusChange; // 이벤트 등록
             //Console.WriteLine("TTS 생성");
         }
@@ -49,6 +69,11 @@ namespace SimpleTTS
         public void setPTT(bool isPTT) // 푸시 투 토크 쓸건지.
         {
             this.isPTT = isPTT;
+        }
+
+        public void setPbSpeed(double pbSpeed) // 재생 속도 설정
+        {
+            this.pbSpeed = pbSpeed;
         }
 
 
@@ -84,19 +109,28 @@ namespace SimpleTTS
             }
 
 
+            if (voiceType == 0) // 구글 음성
+            {
 
-            try
-            {
-                webClient.DownloadFile(getVoiceURL(Message),path); // 음성 파일 다운로드
+                try
+                {
+                    webClient.DownloadFile(getVoiceURL(Message), path); // 음성 파일 다운로드
+                }
+                catch (WebException e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+                catch (IOException e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
             }
-            catch (WebException e)
+            else // 네이버 음성
             {
-                Console.WriteLine(e.ToString());
+                getVoice(Message, path);
             }
-            catch (IOException e)
-            {
-                Console.WriteLine(e.ToString());
-            }
+
+
 
             webClient.Dispose();
             return true;
@@ -108,9 +142,12 @@ namespace SimpleTTS
             Delay(100);
 
             path = System.Windows.Forms.Application.StartupPath + @"\sound\" + fName;
-            
+
+            if (pbSpeed == 0)
+                pbSpeed = 0.1;
+
             wPlayer.URL = path;
-            
+            wPlayer.settings.rate = pbSpeed;
             wPlayer.controls.play();
             
             
@@ -148,46 +185,62 @@ namespace SimpleTTS
 
         }
 
-        public String getVoiceURL(String Message) // 보이스 주소 구해주기
+        private String getVoiceURL(String Message) // Google TSS
         {
             String voiceURL = ""; // 목소리 주소
+            
+            switch (langType)
+            {
+                case 0: // 한국인
+                    voiceURL = "https://translate.google.com/translate_tts?ie=UTF-8&total=1&idx=0&textlen=32&client=tw-ob&q=" + Message + "&tl=ko-kr";
+                    break;
+                case 1: // 영어인
+                    voiceURL = "https://translate.google.com/translate_tts?ie=UTF-8&total=1&idx=0&textlen=32&client=tw-ob&q=" + Message + "&tl=en";
+                    break;
+                case 2: // 중국인
+                    voiceURL = "https://translate.google.com/translate_tts?ie=UTF-8&total=1&idx=0&textlen=32&client=tw-ob&q=" + Message + "&tl=zh-CN";
+                    break;
+            }
 
-            if (voiceType == 0) // 구글
-            {
-                switch (langType)
-                {
-                    case 0: // 한국인
-                        voiceURL = "https://translate.google.com/translate_tts?ie=UTF-8&total=1&idx=0&textlen=32&client=tw-ob&q=" + Message + "&tl=ko-kr";
-                        break;
-                    case 1: // 영어인
-                        voiceURL = "https://translate.google.com/translate_tts?ie=UTF-8&total=1&idx=0&textlen=32&client=tw-ob&q=" + Message + "&tl=en";
-                        break;
-                    case 2: // 중국인
-                        voiceURL = "https://translate.google.com/translate_tts?ie=UTF-8&total=1&idx=0&textlen=32&client=tw-ob&q=" + Message + "&tl=zh-CN";
-                        break;
-                }
-            }
-            else if (voiceType == 1)
-            {
-                switch (langType)
-                {
-                    case 0: // 한국인
-                        voiceURL = "https://m.search.naver.com/p/csearch/ocontent/util/ttsProxy.nhn?service=nco_translate&from=pc_search&speech_fmt=mp3" +
-                            "&passportKey=e2f13734bbe4ef5da73790792c00585659b07231&speaker=mijin&text=" + Message;
-                        break;
-                    case 1: // 영어인
-                        voiceURL = "https://m.search.naver.com/p/csearch/ocontent/util/ttsProxy.nhn?service=nco_translate&from=pc_search&speech_fmt=mp3" +
-                            "&speed=0&passportKey=e2f13734bbe4ef5da73790792c00585659b07231&speaker=clara&text=" + Message;
-                        break;
-                    case 2: // 중국인
-                        voiceURL = "https://s.search.naver.com/n/tts.cndic/tts/mp3ttsV1.cgi?url=cndic.naver.com&text_fmt=0&pitch=100&volume=100" +
-                            "&wrapper=0&enc=0&spk_id=250&speed=80&text=" + Message;
-                        break;
-                }
-            }
 
             return voiceURL;
         }
+
+
+
+
+
+
+        private void getVoice(String Message, String path) // Naver API
+        {
+            string speaker = Array_Speaker[langType, voiceType-1];
+
+            string text = Message; // 음성합성할 문자값
+            string url = "https://openapi.naver.com/v1/voice/tts.bin";
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+
+            request.Headers.Add("X-Naver-Client-Id", Properties.Settings.Default.SclientID);
+            request.Headers.Add("X-Naver-Client-Secret", Properties.Settings.Default.SclientSecret);
+
+            request.Method = "POST";
+            byte[] byteDataParams = Encoding.UTF8.GetBytes("speaker=" + speaker + "&speed=0&text=" + text);
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = byteDataParams.Length;
+            Stream st = request.GetRequestStream();
+            st.Write(byteDataParams, 0, byteDataParams.Length);
+            st.Close();
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            string status = response.StatusCode.ToString();
+            Console.WriteLine("Naver status=" + status);
+            
+            
+            using (Stream output = File.Create(path))
+            using (Stream input = response.GetResponseStream())
+            {
+                input.CopyTo(output);
+            }
+        }
+        
 
         private static DateTime Delay(int MS)
         {

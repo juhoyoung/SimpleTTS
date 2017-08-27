@@ -23,10 +23,10 @@
     <Setting Name="isTrans" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="clientID" Type="System.String" Scope="User">
+    <Setting Name="TclientID" Type="System.String" Scope="User">
       <Value Profile="(Default)">입력</Value>
     </Setting>
-    <Setting Name="clientSecret" Type="System.String" Scope="User">
+    <Setting Name="TclientSecret" Type="System.String" Scope="User">
       <Value Profile="(Default)">입력</Value>
     </Setting>
     <Setting Name="tType" Type="System.Int32" Scope="User">
@@ -34,6 +34,15 @@
     </Setting>
     <Setting Name="isPTT" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="IPbSpeed" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="SclientID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">입력</Value>
+    </Setting>
+    <Setting Name="SclientSecret" Type="System.String" Scope="User">
+      <Value Profile="(Default)">입력</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5080440C-5C9D-416C-BA9C-CB61AFA638A9}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>SimpleTTS</RootNamespace>
     <AssemblyName>A Hidden Voice</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>

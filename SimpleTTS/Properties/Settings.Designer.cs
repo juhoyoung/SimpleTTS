@@ -110,24 +110,24 @@ namespace SimpleTTS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("입력")]
-        public string clientID {
+        public string TclientID {
             get {
-                return ((string)(this["clientID"]));
+                return ((string)(this["TclientID"]));
             }
             set {
-                this["clientID"] = value;
+                this["TclientID"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("입력")]
-        public string clientSecret {
+        public string TclientSecret {
             get {
-                return ((string)(this["clientSecret"]));
+                return ((string)(this["TclientSecret"]));
             }
             set {
-                this["clientSecret"] = value;
+                this["TclientSecret"] = value;
             }
         }
         
@@ -152,6 +152,42 @@ namespace SimpleTTS.Properties {
             }
             set {
                 this["isPTT"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int IPbSpeed {
+            get {
+                return ((int)(this["IPbSpeed"]));
+            }
+            set {
+                this["IPbSpeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("입력")]
+        public string SclientID {
+            get {
+                return ((string)(this["SclientID"]));
+            }
+            set {
+                this["SclientID"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("입력")]
+        public string SclientSecret {
+            get {
+                return ((string)(this["SclientSecret"]));
+            }
+            set {
+                this["SclientSecret"] = value;
             }
         }
     }
