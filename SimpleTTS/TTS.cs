@@ -9,6 +9,7 @@ using System.Net;
 using System.Threading;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace SimpleTTS
 {
@@ -229,16 +230,36 @@ namespace SimpleTTS
             Stream st = request.GetRequestStream();
             st.Write(byteDataParams, 0, byteDataParams.Length);
             st.Close();
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            string status = response.StatusCode.ToString();
-            Console.WriteLine("Naver status=" + status);
-            
-            
-            using (Stream output = File.Create(path))
-            using (Stream input = response.GetResponseStream())
+            try
             {
-                input.CopyTo(output);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                string status = response.StatusCode.ToString();
+                Console.WriteLine("Naver status=" + status);
+
+
+                using (Stream output = File.Create(path))
+                using (Stream input = response.GetResponseStream())
+                {
+                    input.CopyTo(output);
+                }
             }
+            catch(WebException e)
+            {
+                Console.WriteLine(e.ToString());
+                Regex reg = new Regex(@"\d{3}");
+                Match result = reg.Match(e.ToString());
+
+                switch (result.ToString())
+                {
+                    case "401":
+                        MessageBox.Show("음성합성란의 클라이언트 아이디와 시크릿 값을 확인해주세요.");
+                        break;
+                    case "429":
+                        MessageBox.Show("음성합성 1일 허용량을 초과하였습니다. 한국인과 함께하세요.");
+                        break;
+                }
+            }
+
         }
         
 

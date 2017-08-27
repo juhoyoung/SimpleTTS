@@ -59,7 +59,7 @@ namespace SimpleTTS
                 switch(result.ToString())
                 {
                     case "401": 
-                        MessageBox.Show("클라이언트 아이디와 시크릿 값을 확인해주세요.");
+                        MessageBox.Show("번역란의 클라이언트 아이디와 시크릿 값을 확인해주세요.");
                         break;
                     case "429":
                         MessageBox.Show("번역 1일 허용량을 초과하였습니다. 한국인과 함께하세요.");

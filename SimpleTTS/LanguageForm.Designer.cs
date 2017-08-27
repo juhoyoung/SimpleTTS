@@ -171,9 +171,9 @@
             // 
             this.voiceType_cBox.FormattingEnabled = true;
             this.voiceType_cBox.Items.AddRange(new object[] {
-            "1번 타입",
-            "2번 타입",
-            "3번 타입"});
+            "1번 타입 (G)",
+            "2번 타입 (N)",
+            "3번 타입 (N)"});
             this.voiceType_cBox.Location = new System.Drawing.Point(9, 30);
             this.voiceType_cBox.Name = "voiceType_cBox";
             this.voiceType_cBox.Size = new System.Drawing.Size(110, 20);
