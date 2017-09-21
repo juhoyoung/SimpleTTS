@@ -31,6 +31,8 @@ namespace SimpleTTS
                 if (keyData.Equals(Keys.Enter))  // 엔터키 눌렀을때 처리
                 {
                     //Console.WriteLine(chat_tBox.Text);
+
+                    this.Hide();
                     if (TTS.ts.SaveAudio(chat_tBox.Text, "chat.mp3") == true) // 메세지가 들어있을때만 플레이
                     {
                         TTS.ts.PlayMessage("chat.mp3");
@@ -53,8 +55,11 @@ namespace SimpleTTS
         private void ChatingForm_Load(object sender, EventArgs e)
         {
             Console.WriteLine("채팅창 열림");
-           
-            
+        }
+
+        private void ChatingForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Console.WriteLine("채팅창 닫힘");
         }
     }
 

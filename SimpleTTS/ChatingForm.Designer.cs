@@ -51,6 +51,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "ChatingForm";
             this.TopMost = true;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ChatingForm_FormClosed);
             this.Load += new System.EventHandler(this.ChatingForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

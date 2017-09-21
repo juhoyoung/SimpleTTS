@@ -44,5 +44,38 @@
     <Setting Name="SclientSecret" Type="System.String" Scope="User">
       <Value Profile="(Default)">입력</Value>
     </Setting>
+    <Setting Name="HotKeyChat" Type="System.String" Scope="User">
+      <Value Profile="(Default)">'</Value>
+    </Setting>
+    <Setting Name="HotKeyChatOption" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="HotKeyMacro1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="HotKeyMacro1Option" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="HotKeyMacro2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="HotKeyMacro2Option" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="HotKeyMacro3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="HotKeyMacro3Option" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="HotKeyMacro4" Type="System.String" Scope="User">
+      <Value Profile="(Default)">4</Value>
+    </Setting>
+    <Setting Name="HotKeyMacro4Option" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="HotKeyPTT" Type="System.String" Scope="User">
+      <Value Profile="(Default)">`</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

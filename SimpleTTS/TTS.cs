@@ -31,10 +31,13 @@ namespace SimpleTTS
         ///
         private String[,] Array_Speaker = { {"mijin" , "jinho"} ,
                                       {"clara" , "matt" },
-                                      {"meimei", "liangliang" } }; 
+                                      {"meimei", "liangliang" } };  // 네이버 목소리 주인 이름
 
         [DllImport("user32.dll")]
         static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, int dwExtraInfo); // 키보드 입력
+
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+        static extern short VkKeyScanEx(char ch, IntPtr dwhkl);
 
 
         public static TTS ts = new TTS(); // 싱글톤
@@ -45,7 +48,7 @@ namespace SimpleTTS
         private int voiceType = 0; // 목소리 타입. 0=구글 1=네이버
         private bool isPTT = false; // 눌러서 말하기 사용 여부
         private double pbSpeed = 1.0;
-        
+
 
         public TTS()
         {
@@ -76,7 +79,6 @@ namespace SimpleTTS
         {
             this.pbSpeed = pbSpeed;
         }
-
 
 
         public bool SaveAudio(String Message, String fName) // TTS 파일 저장
@@ -112,7 +114,6 @@ namespace SimpleTTS
 
             if (voiceType == 0) // 구글 음성
             {
-
                 try
                 {
                     webClient.DownloadFile(getVoiceURL(Message), path); // 음성 파일 다운로드
@@ -130,8 +131,6 @@ namespace SimpleTTS
             {
                 getVoice(Message, path);
             }
-
-
 
             webClient.Dispose();
             return true;
@@ -151,24 +150,26 @@ namespace SimpleTTS
             wPlayer.settings.rate = pbSpeed;
             wPlayer.controls.play();
             
-            
-
-
         }
 
         private void WPlayer_StatusChange() // 영상 재생 상태 바뀔때 동작
         {
             // Console.WriteLine(wPlayer.status);
+            char KeyPTT;
+            short VkCodePTT;
+            KeyPTT = char.Parse(OptionController.instance.GetHotKeyPTT());
+            VkCodePTT = VkKeyScanEx(KeyPTT, IntPtr.Zero);
 
+            
             if (isPTT == true)
             {
                 if (wPlayer.status.Equals("중지됨"))
                 {
-                    keybd_event((byte)Keys.Oemtilde, 0, 0x102, 0); // 손뗌
+                    keybd_event((byte)VkCodePTT, 0, 0x102, 0); // 손뗌
                 }
                 else if (wPlayer.status.Contains("재생"))
                 {
-                    keybd_event((byte)Keys.Oemtilde, 0, 0x100, 0); // 누름
+                    keybd_event((byte)VkCodePTT, 0, 0x100, 0); // 누름
                 }
             }
         }
@@ -243,7 +244,7 @@ namespace SimpleTTS
                     input.CopyTo(output);
                 }
             }
-            catch(WebException e)
+            catch(WebException e) // 예외 처리
             {
                 Console.WriteLine(e.ToString());
                 Regex reg = new Regex(@"\d{3}");
@@ -261,9 +262,10 @@ namespace SimpleTTS
             }
 
         }
+
         
 
-        private static DateTime Delay(int MS)
+        private static DateTime Delay(int MS) // 딜레이
         {
             DateTime ThisMoment = DateTime.Now;
             TimeSpan duration = new TimeSpan(0, 0, 0, 0, MS);

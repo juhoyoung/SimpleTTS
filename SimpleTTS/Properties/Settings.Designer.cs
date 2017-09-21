@@ -190,5 +190,137 @@ namespace SimpleTTS.Properties {
                 this["SclientSecret"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\'")]
+        public string HotKeyChat {
+            get {
+                return ((string)(this["HotKeyChat"]));
+            }
+            set {
+                this["HotKeyChat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int HotKeyChatOption {
+            get {
+                return ((int)(this["HotKeyChatOption"]));
+            }
+            set {
+                this["HotKeyChatOption"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public string HotKeyMacro1 {
+            get {
+                return ((string)(this["HotKeyMacro1"]));
+            }
+            set {
+                this["HotKeyMacro1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int HotKeyMacro1Option {
+            get {
+                return ((int)(this["HotKeyMacro1Option"]));
+            }
+            set {
+                this["HotKeyMacro1Option"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public string HotKeyMacro2 {
+            get {
+                return ((string)(this["HotKeyMacro2"]));
+            }
+            set {
+                this["HotKeyMacro2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int HotKeyMacro2Option {
+            get {
+                return ((int)(this["HotKeyMacro2Option"]));
+            }
+            set {
+                this["HotKeyMacro2Option"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public string HotKeyMacro3 {
+            get {
+                return ((string)(this["HotKeyMacro3"]));
+            }
+            set {
+                this["HotKeyMacro3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int HotKeyMacro3Option {
+            get {
+                return ((int)(this["HotKeyMacro3Option"]));
+            }
+            set {
+                this["HotKeyMacro3Option"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public string HotKeyMacro4 {
+            get {
+                return ((string)(this["HotKeyMacro4"]));
+            }
+            set {
+                this["HotKeyMacro4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int HotKeyMacro4Option {
+            get {
+                return ((int)(this["HotKeyMacro4Option"]));
+            }
+            set {
+                this["HotKeyMacro4Option"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("`")]
+        public string HotKeyPTT {
+            get {
+                return ((string)(this["HotKeyPTT"]));
+            }
+            set {
+                this["HotKeyPTT"] = value;
+            }
+        }
     }
 }
